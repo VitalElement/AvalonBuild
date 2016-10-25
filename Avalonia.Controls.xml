@@ -4,94 +4,122 @@
         <name>Avalonia.Controls</name>
     </assembly>
     <members>
-        <member name="T:Avalonia.Controls.AppBuilder">
+        <member name="T:Avalonia.Controls.AppBuilderBase`1">
             <summary>
-            Initializes up platform-specific services for an <see cref="T:Avalonia.Application"/>.
+            Base class for initializing platform-specific services for an <see cref="T:Avalonia.Application"/>.
+            </summary>
+            <typeparam name="TAppBuilder">The type of the AppBuilder class itself.</typeparam>
+        </member>
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.RuntimePlatform">
+            <summary>
+            Gets or sets the <see cref="T:Avalonia.Platform.IRuntimePlatform"/> instance.
             </summary>
         </member>
-        <member name="P:Avalonia.Controls.AppBuilder.Instance">
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.RuntimePlatformServicesInitializer">
+            <summary>
+            Gets or sets a method to call the initialize the runtime platform services (e. g. AssetLoader)
+            </summary>
+        </member>
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.Instance">
             <summary>
             Gets or sets the <see cref="T:Avalonia.Application"/> instance being initialized.
             </summary>
         </member>
-        <member name="P:Avalonia.Controls.AppBuilder.WindowingSubsystem">
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.WindowingSubsystemInitializer">
             <summary>
             Gets or sets a method to call the initialize the windowing subsystem.
             </summary>
         </member>
-        <member name="P:Avalonia.Controls.AppBuilder.RenderingSubsystem">
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.WindowingSubsystemName">
+            <summary>
+            Gets the name of the currently selected windowing subsystem.
+            </summary>
+        </member>
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.RenderingSubsystemInitializer">
             <summary>
             Gets or sets a method to call the initialize the windowing subsystem.
             </summary>
         </member>
-        <member name="P:Avalonia.Controls.AppBuilder.BeforeStartCallback">
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.RenderingSubsystemName">
             <summary>
-            Gets or sets a method to call before <see cref="M:Avalonia.Controls.AppBuilder.Start``1"/> is called on the
+            Gets the name of the currently selected rendering subsystem.
+            </summary>
+        </member>
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.AfterSetupCallback">
+            <summary>
+            Gets or sets a method to call after the <see cref="T:Avalonia.Application"/> is setup.
+            </summary>
+        </member>
+        <member name="P:Avalonia.Controls.AppBuilderBase`1.BeforeStartCallback">
+            <summary>
+            Gets or sets a method to call before <see cref="M:Avalonia.Controls.AppBuilderBase`1.Start``1"/> is called on the
             <see cref="T:Avalonia.Application"/>.
             </summary>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.Configure``1">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.Configure``1">
             <summary>
             Begin configuring an <see cref="T:Avalonia.Application"/>.
             </summary>
             <typeparam name="TApp">The subclass of <see cref="T:Avalonia.Application"/> to configure.</typeparam>
-            <returns>An <see cref="T:Avalonia.Controls.AppBuilder"/> instance.</returns>
+            <returns>An <typeparamref name="TAppBuilder"/> instance.</returns>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.Configure(Avalonia.Application)">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.Configure(Avalonia.Application)">
             <summary>
             Begin configuring an <see cref="T:Avalonia.Application"/>.
             </summary>
-            <returns>An <see cref="T:Avalonia.Controls.AppBuilder"/> instance.</returns>
+            <returns>An <typeparamref name="TAppBuilder"/> instance.</returns>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.BeforeStarting(System.Action{Avalonia.Controls.AppBuilder})">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.BeforeStarting(System.Action{`0})">
             <summary>
-            Registers a callback to call before <see cref="M:Avalonia.Controls.AppBuilder.Start``1"/> is called on the
+            Registers a callback to call before <see cref="M:Avalonia.Controls.AppBuilderBase`1.Start``1"/> is called on the
             <see cref="T:Avalonia.Application"/>.
             </summary>
             <param name="callback">The callback.</param>
-            <returns>An <see cref="T:Avalonia.Controls.AppBuilder"/> instance.</returns>
+            <returns>An <typeparamref name="TAppBuilder"/> instance.</returns>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.Start``1">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.Start``1">
             <summary>
             Starts the application with an instance of <typeparamref name="TMainWindow"/>.
             </summary>
             <typeparam name="TMainWindow">The window type.</typeparam>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.SetupWithoutStarting">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.SetupWithoutStarting">
             <summary>
             Sets up the platform-specific services for the application, but does not run it.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.UseWindowingSubsystem(System.Action)">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.UseWindowingSubsystem(System.Action,System.String)">
             <summary>
             Specifies a windowing subsystem to use.
             </summary>
             <param name="initializer">The method to call to initialize the windowing subsystem.</param>
-            <returns>An <see cref="T:Avalonia.Controls.AppBuilder"/> instance.</returns>
+            <param name="name">The name of the windowing subsystem.</param>
+            <returns>An <typeparamref name="TAppBuilder"/> instance.</returns>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.UseWindowingSubsystem(System.String)">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.UseWindowingSubsystem(System.String)">
             <summary>
             Specifies a windowing subsystem to use.
             </summary>
             <param name="dll">The dll in which to look for subsystem.</param>
-            <returns>An <see cref="T:Avalonia.Controls.AppBuilder"/> instance.</returns>
+            <returns>An <typeparamref name="TAppBuilder"/> instance.</returns>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.UseRenderingSubsystem(System.Action)">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.UseRenderingSubsystem(System.Action,System.String)">
             <summary>
             Specifies a rendering subsystem to use.
             </summary>
             <param name="initializer">The method to call to initialize the rendering subsystem.</param>
-            <returns>An <see cref="T:Avalonia.Controls.AppBuilder"/> instance.</returns>
+            <param name="name">The name of the rendering subsystem.</param>
+            <returns>An <typeparamref name="TAppBuilder"/> instance.</returns>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.UseRenderingSubsystem(System.String)">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.UseRenderingSubsystem(System.String)">
             <summary>
             Specifies a rendering subsystem to use.
             </summary>
             <param name="dll">The dll in which to look for subsystem.</param>
-            <returns>An <see cref="T:Avalonia.Controls.AppBuilder"/> instance.</returns>
+            <returns>An <typeparamref name="TAppBuilder"/> instance.</returns>
         </member>
-        <member name="M:Avalonia.Controls.AppBuilder.Setup">
+        <member name="M:Avalonia.Controls.AppBuilderBase`1.Setup">
             <summary>
             Sets up the platform-speciic services for the <see cref="T:Avalonia.Application"/>.
             </summary>
@@ -478,13 +506,6 @@
         </member>
         <member name="M:Avalonia.Controls.Generators.TreeItemContainerGenerator`1.CreateContainer(System.Object)">
             <inheritdoc/>
-        </member>
-        <member name="M:Avalonia.Controls.Generators.TreeItemContainerGenerator`1.GetTreeDataTemplate(System.Object,Avalonia.Controls.Templates.IDataTemplate)">
-            <summary>
-            Gets the data template for the specified item.
-            </summary>
-            <param name="item">The item.</param>
-            <returns>The template.</returns>
         </member>
         <member name="T:Avalonia.Controls.Generators.ItemContainerGenerator`1">
             <summary>
@@ -1706,6 +1727,22 @@
             <param name="control">The control.</param>
             <param name="nameScope">The name scope.</param>
         </member>
+        <member name="T:Avalonia.Controls.PointEventArgs">
+            <summary>
+            Provides <see cref="P:Avalonia.Controls.PointEventArgs.Point"/> data for events.
+            </summary>
+        </member>
+        <member name="M:Avalonia.Controls.PointEventArgs.#ctor(Avalonia.Point)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Avalonia.Controls.PointEventArgs"/> class.
+            </summary>
+            <param name="point">The <see cref="P:Avalonia.Controls.PointEventArgs.Point"/> data.</param>
+        </member>
+        <member name="P:Avalonia.Controls.PointEventArgs.Point">
+            <summary>
+            Gets the <see cref="P:Avalonia.Controls.PointEventArgs.Point"/> data.
+            </summary>
+        </member>
         <member name="T:Avalonia.Controls.WindowIcon">
             <summary>
             Represents an icon for a window.
@@ -1802,8 +1839,8 @@
             </summary>
             <remarks>
             This property should return false until enough children are added to fill the space
-            passed into the last measure in the direction of scroll. It should be updated
-            immediately after a child is added or removed.
+            passed into the last measure or arrange in the direction of scroll. It should be
+            updated immediately after a child is added or removed.
             </remarks>
         </member>
         <member name="P:Avalonia.Controls.IVirtualizingPanel.OverflowCount">
@@ -1840,6 +1877,19 @@
             <summary>
             Gets or sets the current pixel offset of the items in the direction of scroll.
             </summary>
+        </member>
+        <member name="M:Avalonia.Controls.IVirtualizingPanel.ForceInvalidateMeasure">
+            <summary>
+            Invalidates the measure of the control and forces a call to 
+            <see cref="M:Avalonia.Controls.IVirtualizingController.UpdateControls"/> on the next measure.
+            </summary>
+            <remarks>
+            The implementation for this method should call
+            <see cref="M:Avalonia.Layout.ILayoutable.InvalidateMeasure"/> and also ensure that the next call to
+            <see cref="M:Avalonia.Layout.ILayoutable.Measure(Avalonia.Size)"/> calls
+            <see cref="M:Avalonia.Controls.IVirtualizingController.UpdateControls"/> on the next measure even if
+            the available size hasn't changed.
+            </remarks>
         </member>
         <member name="M:Avalonia.Controls.LayoutTransformControl.ArrangeOverride(Avalonia.Size)">
             <summary>
@@ -2195,6 +2245,9 @@
         <member name="P:Avalonia.Controls.Presenters.ItemVirtualizerSimple.ViewportValue">
             <inheritdoc/>
         </member>
+        <member name="M:Avalonia.Controls.Presenters.ItemVirtualizerSimple.MeasureOverride(Avalonia.Size)">
+            <inheritdoc/>
+        </member>
         <member name="M:Avalonia.Controls.Presenters.ItemVirtualizerSimple.UpdateControls">
             <inheritdoc/>
         </member>
@@ -2349,6 +2402,20 @@
             </summary>
             <param name="owner">The items presenter.</param>
             <returns>An <see cref="T:Avalonia.Controls.Presenters.ItemVirtualizer"/>.</returns>
+        </member>
+        <member name="M:Avalonia.Controls.Presenters.ItemVirtualizer.MeasureOverride(Avalonia.Size)">
+            <summary>
+            Carries out a measure for the related <see cref="T:Avalonia.Controls.Presenters.ItemsPresenter"/>.
+            </summary>
+            <param name="availableSize">The size available to the control.</param>
+            <returns>The desired size for the control.</returns>
+        </member>
+        <member name="M:Avalonia.Controls.Presenters.ItemVirtualizer.ArrangeOverride(Avalonia.Size)">
+            <summary>
+            Carries out an arrange for the related <see cref="T:Avalonia.Controls.Presenters.ItemsPresenter"/>.
+            </summary>
+            <param name="finalSize">The size available to the control.</param>
+            <returns>The actual size used.</returns>
         </member>
         <member name="M:Avalonia.Controls.Presenters.ItemVirtualizer.UpdateControls">
             <inheritdoc/>
@@ -2750,6 +2817,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Avalonia.Controls.Presenters.ItemsPresenter.Avalonia#Controls#Primitives#ILogicalScrollable#GetControlInDirection(Avalonia.Input.NavigationDirection,Avalonia.Controls.IControl)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Avalonia.Controls.Presenters.ItemsPresenter.MeasureOverride(Avalonia.Size)">
             <inheritdoc/>
         </member>
         <member name="M:Avalonia.Controls.Presenters.ItemsPresenter.PanelCreated(Avalonia.Controls.IPanel)">
@@ -4715,9 +4785,6 @@
             pseudoclasses.
             </summary>
         </member>
-        <member name="M:Avalonia.Controls.Control.DataValidationChanged(Avalonia.AvaloniaProperty,Avalonia.Data.IValidationStatus)">
-            <inheritdoc/>
-        </member>
         <member name="M:Avalonia.Controls.Control.Avalonia#Controls#ISetLogicalParent#SetParent(Avalonia.LogicalTree.ILogical)">
             <summary>
             Sets the control's logical parent.
@@ -5331,9 +5398,6 @@
             </summary>
             <param name="e">The details of the containers.</param>
         </member>
-        <member name="M:Avalonia.Controls.ItemsControl.OnTemplateChanged(Avalonia.AvaloniaPropertyChangedEventArgs)">
-            <inheritdoc/>
-        </member>
         <member name="M:Avalonia.Controls.ItemsControl.ItemsChanged(Avalonia.AvaloniaPropertyChangedEventArgs)">
             <summary>
             Caled when the <see cref="P:Avalonia.Controls.ItemsControl.Items"/> property changes.
@@ -5594,6 +5658,11 @@
             Fired when the window is deactivated.
             </summary>
         </member>
+        <member name="E:Avalonia.Controls.TopLevel.PositionChanged">
+            <summary>
+            Fired when the window position is changed.
+            </summary>
+        </member>
         <member name="P:Avalonia.Controls.TopLevel.ClientSize">
             <summary>
             Gets or sets the client size of the window.
@@ -5729,6 +5798,13 @@
             Handles input from <see cref="P:Avalonia.Platform.ITopLevelImpl.Input"/>.
             </summary>
             <param name="e">The event args.</param>
+        </member>
+        <member name="M:Avalonia.Controls.TopLevel.HandlePositionChanged(Avalonia.Point)">
+            <summary>
+            Handles a window position change notification from 
+            <see cref="P:Avalonia.Platform.ITopLevelImpl.PositionChanged"/>.
+            </summary>
+            <param name="pos">The window position.</param>
         </member>
         <member name="M:Avalonia.Controls.TopLevel.BeginMoveDrag">
             <summary>
@@ -6857,6 +6933,51 @@
             Register's the services needed by Avalonia.
             </summary>
         </member>
+        <member name="T:Avalonia.Platform.IEmbeddableWindowImpl">
+            <summary>
+            Defines a platform-specific embeddable window implementation.
+            </summary>
+        </member>
+        <member name="T:Avalonia.Platform.ExportAvaloniaModuleAttribute">
+            <summary>
+            Defines an "Avalonia Module", a 3rd party extension to Avalonia that can be automatically initialized by an AppBuilder instance.
+            </summary>
+            <remarks>
+            Avalonia Modules can either be platform independent (ex default control styles provider) or dependent on a
+            specific windowing or rendering subsystem being used (ex native rendering speedup, subsystem-specific interop backends).
+            In the case of a subsystem-specific module, you can specify multiple module implementations, and also a fallback
+            platform-independent module if you so choose. Additionally, these different implementations can be in different assemblies.
+            They just need to all share the same module name.
+            
+            For example, if I had a module Foo that has a special back-end for Skia and a less performant/less user friendly back-end for
+            any other rendering subsystem, I would do the following:
+            <code>
+            // In assembly FooModuleSkia.dll
+            [assembly:ExportAvaloniaModule("Foo", typeof(FooModuleSkia), ForRenderingSubsystem="Skia")]
+            
+            class FooModuleSkia
+            {
+                public FooModuleSkia()
+                {
+                    InitializeModule();
+                }
+            }
+            
+            // In assembly FooModuleFallback.dll
+            [assembly:ExportAvaloniaModule("Foo", typeof(FooModuleFallback))]
+            
+            class FooModuleFallback
+            {
+                public FooModuleFallback()
+                {
+                    InitializeModule();
+                }
+            }
+            
+            </code>
+            The fallback module will only be initialized if the Skia-specific module is not applicable.
+            </remarks>
+        </member>
         <member name="T:Avalonia.Platform.IPopupImpl">
             <summary>
             Defines a platform-specific popup window implementation.
@@ -6874,6 +6995,11 @@
         <member name="P:Avalonia.Platform.ITopLevelImpl.ClientSize">
             <summary>
             Gets or sets the client size of the window.
+            </summary>
+        </member>
+        <member name="P:Avalonia.Platform.ITopLevelImpl.MaxClientSize">
+            <summary>
+            Gets the maximum size of a window on the system.
             </summary>
         </member>
         <member name="P:Avalonia.Platform.ITopLevelImpl.Scaling">
@@ -6919,6 +7045,11 @@
         <member name="P:Avalonia.Platform.ITopLevelImpl.ScalingChanged">
             <summary>
             Gets or sets a method called when the window's scaling changes.
+            </summary>
+        </member>
+        <member name="P:Avalonia.Platform.ITopLevelImpl.PositionChanged">
+            <summary>
+            Gets or sets a method called when the window's position changes.
             </summary>
         </member>
         <member name="M:Avalonia.Platform.ITopLevelImpl.Activate">
@@ -6980,11 +7111,6 @@
         <member name="T:Avalonia.Platform.IWindowImpl">
             <summary>
             Defines a platform-specific window implementation.
-            </summary>
-        </member>
-        <member name="P:Avalonia.Platform.IWindowImpl.MaxClientSize">
-            <summary>
-            Gets the maximum size of a window on the system.
             </summary>
         </member>
         <member name="P:Avalonia.Platform.IWindowImpl.WindowState">
