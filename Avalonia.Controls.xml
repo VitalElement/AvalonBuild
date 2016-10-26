@@ -5683,9 +5683,9 @@
             Gets the platform-specific window implementation.
             </summary>
         </member>
-        <member name="P:Avalonia.Controls.TopLevel.Avalonia#Rendering#IRenderRoot#RenderQueueManager">
+        <member name="P:Avalonia.Controls.TopLevel.Renderer">
             <summary>
-            Gets the window render manager.
+            Gets the renderer for the window.
             </summary>
         </member>
         <member name="P:Avalonia.Controls.TopLevel.Avalonia#Input#IInputRoot#AccessKeyHandler">
@@ -5718,6 +5718,12 @@
             <summary>
             Whether an auto-size operation is in progress.
             </summary>
+        </member>
+        <member name="M:Avalonia.Controls.TopLevel.Avalonia#Rendering#IRenderRoot#CreateRenderTarget">
+            <inheritdoc/>
+        </member>
+        <member name="M:Avalonia.Controls.TopLevel.Avalonia#Rendering#IRenderRoot#Invalidate(Avalonia.Rect)">
+            <inheritdoc/>
         </member>
         <member name="M:Avalonia.Controls.TopLevel.Avalonia#Rendering#IRenderRoot#PointToClient(Avalonia.Point)">
             <inheritdoc/>
@@ -5766,8 +5772,8 @@
         </member>
         <member name="M:Avalonia.Controls.TopLevel.TryGetService``1(Avalonia.IAvaloniaDependencyResolver)">
             <summary>
-            Tries to get a service from an <see cref="T:Avalonia.IAvaloniaDependencyResolver"/>, throwing an
-            exception if not found.
+            Tries to get a service from an <see cref="T:Avalonia.IAvaloniaDependencyResolver"/>, logging a
+            warning if not found.
             </summary>
             <typeparam name="T">The service type.</typeparam>
             <param name="resolver">The resolver.</param>
